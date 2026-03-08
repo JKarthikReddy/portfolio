@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jakka Karthik Reddy — AI & Data Science Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Jakka Karthik Reddy — Information Technology Student specializing in Generative AI, Data Science & Data Analytics. Building intelligent systems and actionable insights." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">JKR<span class="dot">.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                <span>Available for Opportunities</span>
+            </div>
+            <h1 class="hero-title">
+                Hi, I'm <span class="highlight">Jakka Karthik Reddy</span>
+            </h1>
+            <p class="hero-subtitle">Information Technology Student &amp; AI / Data Science Enthusiast</p>
+            <p class="hero-tagline">Building intelligent systems using Artificial Intelligence, Generative AI, and Data
+                Science.</p>
+            <div class="hero-location">
+                <i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana
+            </div>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-briefcase"></i> View My Work
+                </a>
+                <a href="#" class="btn btn-secondary" id="downloadResume">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+                <button class="btn btn-outline" id="sharePortfolio">
+                    <i class="fas fa-share-alt"></i> Share Portfolio
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card" data-count="3">
+                    <span class="stat-number">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Internships</span>
+                </div>
+                <div class="stat-card" data-count="30">
+                    <span class="stat-number">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Certifications</span>
+                </div>
+                <div class="stat-card" data-count="4">
+                    <span class="stat-number">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Major AI Projects</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About <span class="highlight">Me</span></h2>
+            <div class="section-line"></div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Information Technology student passionate about building intelligent systems using
+                        <strong>Artificial Intelligence</strong>, <strong>Generative AI</strong>, and <strong>Data
+                            Science</strong>.</p>
+                    <p>Skilled in developing machine learning models, AI-powered applications, and data analytics
+                        solutions using <strong>Python</strong>, <strong>Large Language Models (LLMs)</strong>, and
+                        modern AI tools.</p>
+                    <p>Hands-on experience delivering impactful projects such as a Generative AI lecture companion,
+                        Airbnb booking machine learning analysis, and Netflix content analytics project analyzing
+                        <strong>7,789 titles</strong> to identify global trends.</p>
+                    <p>Strong interest in solving real-world problems through data-driven insights and scalable AI
+                        systems.</p>
+                </div>
+                <div class="about-info">
+                    <div class="info-card">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div class="education-item">
+                            <h4>B.Tech — Information Technology</h4>
+                            <p class="institution">Matrusri Engineering College</p>
+                            <span class="year">Expected May 2027</span>
+                        </div>
+                        <div class="education-item">
+                            <h4>Intermediate — MPC</h4>
+                            <p class="institution">Sri Chaitanya Junior College</p>
+                            <span class="year">Completed 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section class="section section-alt" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills &amp; <span class="highlight">Expertise</span></h2>
+            <div class="section-line"></div>
+            <div class="skills-grid">
+                <!-- Programming -->
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <!-- AI & ML -->
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI &amp; Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Artificial Intelligence</span>
+                        <span class="skill-tag">Generative AI</span>
+                        <span class="skill-tag">Large Language Models</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Machine Learning</span>
+                    </div>
+                </div>
+                <!-- Data Science -->
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Data Science</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Analysis</span>
+                        <span class="skill-tag">Data Cleaning</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Business Insights</span>
+                    </div>
+                </div>
+                <!-- Tools -->
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Tools &amp; Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Google Analytics</span>
+                        <span class="skill-tag">Microsoft 365</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXPERIENCE ========== -->
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Work <span class="highlight">Experience</span></h2>
+            <div class="section-line"></div>
+            <div class="timeline">
+                <!-- 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>AI-ML Virtual Internship</h3>
+                            <span class="timeline-company"><i class="fab fa-google"></i> Google</span>
+                        </div>
+                        <span class="timeline-date"><i class="far fa-calendar-alt"></i> Nov 2025 – Jan 2026</span>
+                        <ul class="timeline-details">
+                            <li>Designed machine learning models for predictive analytics.</li>
+                            <li>Applied data preprocessing and model evaluation techniques.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Data Science Intern</h3>
+                            <span class="timeline-company"><i class="fas fa-building"></i> Oasis Infobyte</span>
+                        </div>
+                        <span class="timeline-date"><i class="far fa-calendar-alt"></i> Oct 2025 – Nov 2025</span>
+                        <ul class="timeline-details">
+                            <li>Performed exploratory data analysis and data visualization.</li>
+                            <li>Built machine learning models for pattern and trend analysis.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>LLM Data Analysis Intern</h3>
+                            <span class="timeline-company"><i class="fas fa-broadcast-tower"></i> Vodafone Idea
+                                Foundation</span>
+                        </div>
+                        <span class="timeline-date"><i class="far fa-calendar-alt"></i> Sep 2025 – Oct 2025</span>
+                        <ul class="timeline-details">
+                            <li>Implemented conversational data analysis workflows using LLMs.</li>
+                            <li>Applied prompt engineering and NLP techniques.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section class="section section-alt" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+            <div class="section-line"></div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-icon"><i class="fas fa-robot"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/JKarthikReddy" target="_blank" rel="noopener noreferrer"
+                                aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>Intelligent Lecture Companion</h3>
+                    <span class="project-badge">Generative AI</span>
+                    <p>AI lecture assistant for automated summarization and question answering using LLMs.</p>
+                    <div class="project-tech">
+                        <span>Python</span><span>LLMs</span><span>NLP</span><span>Generative AI</span>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-icon"><i class="fas fa-home"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/JKarthikReddy" target="_blank" rel="noopener noreferrer"
+                                aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>Airbnb Booking Analysis</h3>
+                    <span class="project-badge">Machine Learning</span>
+                    <p>Analyzed Airbnb booking data and built ML models to predict pricing trends.</p>
+                    <div class="project-tech">
+                        <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>ML</span>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-icon"><i class="fas fa-film"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/JKarthikReddy" target="_blank" rel="noopener noreferrer"
+                                aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>Netflix Content Analysis</h3>
+                    <span class="project-badge">Data Analytics</span>
+                    <p>Analyzed 7,789 Netflix titles to identify global content trends and genre distribution.</p>
+                    <div class="project-tech">
+                        <span>Python</span><span>Matplotlib</span><span>Seaborn</span><span>Pandas</span>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-icon"><i class="fas fa-plane"></i></div>
+                        <div class="project-links">
+                            <a href="https://github.com/JKarthikReddy" target="_blank" rel="noopener noreferrer"
+                                aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>AI Travel Planning Agent</h3>
+                    <span class="project-badge">AI Agent</span>
+                    <p>AI agent system that creates travel itineraries and analyzes budgets.</p>
+                    <div class="project-tech">
+                        <span>Python</span><span>LLMs</span><span>AI Agents</span><span>APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CERTIFICATIONS ========== -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications &amp; <span class="highlight">Achievements</span></h2>
+            <div class="section-line"></div>
+            <div class="cert-counter"><span class="cert-count">30</span>+ Professional Certifications</div>
+            <div class="cert-grid">
+                <!-- Oracle -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-cloud"></i> Oracle</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Oracle Cloud Infrastructure 2025 Certified Generative AI Professional</span>
+                            <small>Oct 2025 · Generative AI</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Oracle Cloud Infrastructure 2025 Certified Data Science Professional</span>
+                            <small>Oct 2025 · Data Science</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Oracle Fusion AI Agent Studio Certified Foundations Associate</span>
+                            <small>Oct 2025 · AI Agent Studio, Generative AI Tools</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Application Development Foundations</span>
+                            <small>Nov 2025 · Application Development</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google & GDG -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fab fa-google"></i> Google</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Google Analytics Certification</span>
+                            <small>May 2025 · Google Analytics</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Introduction to Generative AI</span>
+                            <small>Nov 2024 · AI, Large Language Models</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Introduction to Image Generation</span>
+                            <small>Dec 2024 · AI Image Generation, Computer Vision</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Google DevFest — GDG Hyderabad</span>
+                            <small>Oct 2025 · Communication</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forage -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-laptop-code"></i> Forage</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Deloitte Australia — Cyber Job Simulation</span>
+                            <small>Oct 2025 · Cybersecurity, Threat Analysis</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Deloitte Australia — Technology Job Simulation</span>
+                            <small>Oct 2025 · Technology Consulting, Problem Solving</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Tata — GenAI Powered Data Analytics Job Simulation</span>
+                            <small>Aug 2025 · Prompt Engineering, Business Insights</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Tata Group — Data Visualisation: Empowering Business with Effective Insights</span>
+                            <small>May 2025 · Visual Basics, Statistical Data Analysis</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>AWS — Solutions Architecture Job Simulation</span>
+                            <small>Jul 2025 · Technical Communication, Architecture Diagram</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Deloitte Australia — Data Analytics Job Simulation</span>
+                            <small>May 2025 · Technical Data Analysis</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Microsoft -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fab fa-microsoft"></i> Microsoft</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Career Essentials in Data Analysis by Microsoft and LinkedIn</span>
+                            <small>May 2025 · Data Analysis, Data Visualization</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IBM -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-server"></i> IBM</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Data Analysis Using Python</span>
+                            <small>Aug 2025 · Python for Data Analysis, Data Cleaning</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IIT Bombay -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-university"></i> IIT Bombay</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Python Programming</span>
+                            <small>Nov 2024 · Python</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Java Programming</span>
+                            <small>Apr 2025 · Java</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>HTML Training</span>
+                            <small>Nov 2025 · HTML</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fortinet -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-shield-alt"></i> Fortinet</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Fortinet Certified Fundamentals in Cybersecurity</span>
+                            <small>May 2025 · Cybersecurity Fundamentals</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Getting Started in Cybersecurity 3.0</span>
+                            <small>May 2025 · Network Security</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cisco -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-network-wired"></i> Cisco</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Basic Networking for CCNP Routing and Switching 300-101 ROUTE</span>
+                            <small>Jun 2025 · Computer Networking</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internshala -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-chalkboard-teacher"></i> Internshala</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Core Java</span>
+                            <small>Apr 2025 · Core Java</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Programming with Python</span>
+                            <small>Jan 2024 · Python Programming</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Programming with C and C++</span>
+                            <small>Nov 2024 · C, C++ Programming</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outskill -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-bolt"></i> Outskill</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Generative AI Mastermind</span>
+                            <small>Aug 2025 · Generative AI Tools, AI Prompts</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Others -->
+                <div class="cert-group">
+                    <h3 class="cert-group-title"><i class="fas fa-award"></i> Other Platforms</h3>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>AI Tools Workshop — Be10x</span>
+                            <small>Oct 2025 · AI Tools</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>Digital Skills: User Experience — Accenture (FutureLearn)</span>
+                            <small>May 2025 · UX Research, Design Thinking</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>API Security Fundamentals — APIsec University</span>
+                            <small>May 2025 · API Security</small>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="cert-details">
+                            <span>AI Tools Workshop — United Latino Students Association</span>
+                            <small>May 2025 · AI Tools</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+            <div class="section-line"></div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p class="contact-intro">Have a project in mind or want to collaborate? Feel free to reach out!</p>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:jkarthikreddyreddy@gmail.com">jkarthikreddyreddy@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:+916301628516">+91 6301628516</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/karthik-reddy-8a14862bb/" target="_blank"
+                                rel="noopener noreferrer">karthik-reddy-8a14862bb</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/JKarthikReddy" target="_blank"
+                                rel="noopener noreferrer">JKarthikReddy</a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Your message..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">JKR<span class="dot">.</span></div>
+                <p>Turning data and AI into intelligent solutions and actionable insights.</p>
+                <div class="footer-socials">
+                    <a href="https://www.linkedin.com/in/karthik-reddy-8a14862bb/" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/JKarthikReddy" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:jkarthikreddyreddy@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+                <p class="footer-copy">&copy; 2026 Jakka Karthik Reddy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
