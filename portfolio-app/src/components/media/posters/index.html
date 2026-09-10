@@ -1,0 +1,345 @@
+<meta charset="utf-8">
+<title>posters</title>
+<style>
+  :root {
+    --azure: #38bdf8;
+    --bg: #09090b;
+    --surface: #131316;
+    --ink: #fafafa;
+  }
+  html, body { margin: 0; padding: 0; background: #050506; }
+  .poster {
+    width: 1200px;
+    height: 900px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .poster svg { display: block; }
+  /* gallery mode: all five stacked for eyeballing */
+  body:not(.single) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 0;
+  }
+  body:not(.single) .cap {
+    font: 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #71717a;
+    margin: 0 0 24px;
+  }
+  /* capture mode: exactly one poster filling a 1200x900 viewport */
+  body.single { width: 1200px; height: 900px; overflow: hidden; background: var(--bg); }
+  body.single .poster, body.single .cap { display: none; }
+  body.single .poster.on { display: block; }
+</style>
+
+<section class="poster" id="emotion"></section><p class="cap">emotion</p>
+<section class="poster" id="dentalbot"></section><p class="cap">dentalbot</p>
+<section class="poster" id="gesture"></section><p class="cap">gesture</p>
+<section class="poster" id="chatapp"></section><p class="cap">chatapp</p>
+<section class="poster" id="greenbasket"></section><p class="cap">greenbasket</p>
+
+<script>
+// All art is generated synchronously so a headless screenshot on load is stable.
+const AZ = "56,189,248";
+const az = (a) => `rgba(${AZ},${a})`;
+const ink = (a) => `rgba(250,250,250,${a})`;
+const SURFACE = "#131316";
+
+// deterministic prng so every capture is byte identical
+function rng(seed) {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const DEFS = `
+  <radialGradient id="glow">
+    <stop offset="0" stop-color="#38bdf8" stop-opacity="0.30"/>
+    <stop offset="0.45" stop-color="#38bdf8" stop-opacity="0.10"/>
+    <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glowSoft">
+    <stop offset="0" stop-color="#38bdf8" stop-opacity="0.16"/>
+    <stop offset="0.5" stop-color="#38bdf8" stop-opacity="0.05"/>
+    <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+  </radialGradient>`;
+
+// shared frame: one rounded rect plus four registration marks, identical on all five
+const FRAME = `
+  <rect x="72" y="72" width="1056" height="756" rx="20" fill="none" stroke="${az(0.1)}" stroke-width="1.5"/>
+  <circle cx="600" cy="72" r="3" fill="${az(0.28)}"/>
+  <circle cx="600" cy="828" r="3" fill="${az(0.28)}"/>
+  <circle cx="72" cy="450" r="3" fill="${az(0.28)}"/>
+  <circle cx="1128" cy="450" r="3" fill="${az(0.28)}"/>`;
+
+const svg = (inner) =>
+  `<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">` +
+  `<defs>${DEFS}</defs><rect width="1200" height="900" fill="#09090b"/>${FRAME}${inner}</svg>`;
+
+const dot = (x, y, r, a) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${az(a)}"/>`;
+const poly = (pts, a, w) =>
+  `<polyline points="${pts.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" ")}" fill="none" stroke="${az(a)}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+/* ---------------------------------------------------------- emotion
+   7 abstract face landmark clusters in a row, the fourth highlighted. */
+function emotion() {
+  const xs = [180, 320, 460, 600, 740, 880, 1020];
+  const HI = 3;
+  let s = `<rect x="104" y="300" width="992" height="300" rx="20" fill="${SURFACE}"/>`;
+  s += `<circle cx="${xs[HI]}" cy="450" r="200" fill="url(#glow)"/>`;
+  s += `<line x1="180" y1="560" x2="1020" y2="560" stroke="${az(0.1)}" stroke-width="1"/>`;
+
+  // sampled arc, bulge is positive downward
+  const arc = (x0, y0, x1, y1, bulge, n) =>
+    Array.from({ length: n }, (_, k) => {
+      const t = k / (n - 1);
+      return [x0 + (x1 - x0) * t, y0 + (y1 - y0) * t + Math.sin(Math.PI * t) * bulge];
+    });
+
+  xs.forEach((x, i) => {
+    const on = i === HI;
+    const lineA = on ? 0.4 : 0.14;
+    const ptA = on ? 0.95 : 0.4;
+    const r = on ? 2.6 : 2;
+    const cy = 440;
+    let g = "";
+    const marks = [];
+
+    // face oval, the only stroked contour
+    const oval = [];
+    for (let a = 0; a < 360; a += 15) {
+      const t = (a * Math.PI) / 180;
+      oval.push([x + Math.cos(t) * 48, cy + Math.sin(t) * 62]);
+    }
+    g += poly(oval.concat([oval[0]]), lineA, 1.2);
+    marks.push(...oval);
+
+    // brows, eyes, nose, mouth as landmark points only
+    [-1, 1].forEach((s) => {
+      marks.push(...arc(x + s * 12, cy - 30, x + s * 34, cy - 26, -5, 5));
+      for (let k = 0; k < 6; k++) {
+        const t = (k / 6) * Math.PI * 2;
+        marks.push([x + s * 19 + Math.cos(t) * 11, cy - 13 + Math.sin(t) * 7]);
+      }
+    });
+    marks.push([x, cy - 4], [x, cy + 4], [x, cy + 12], [x - 8, cy + 17], [x + 8, cy + 17]);
+    marks.push(...arc(x - 22, cy + 32, x + 22, cy + 32, -5, 7));
+    marks.push(...arc(x - 22, cy + 32, x + 22, cy + 32, on ? 15 : 9, 7));
+    marks.forEach((p) => (g += dot(p[0], p[1], r, ptA)));
+
+    // index tick under each cluster
+    g += `<line x1="${x}" y1="560" x2="${x}" y2="${on ? 578 : 570}" stroke="${az(on ? 0.85 : 0.22)}" stroke-width="${on ? 2 : 1}"/>`;
+    if (on) g += `<rect x="${x - 4}" y="582" width="8" height="8" fill="${az(0.9)}"/>`;
+    s += g;
+  });
+  return svg(s);
+}
+
+/* -------------------------------------------------------- dentalbot
+   symmetric mirrored waveform under a smooth amplitude envelope. */
+function dentalbot() {
+  const x0 = 120, x1 = 1080, cy = 450, AMP = 232, N = 97;
+  const rand = rng(7);
+  const jitter = Array.from({ length: N }, () => rand());
+  const env = (t) => Math.pow(Math.sin(Math.PI * t), 0.62);
+  const amp = (t, k) => {
+    const voice =
+      0.55 +
+      0.28 * Math.sin(t * Math.PI * 7.3) +
+      0.17 * Math.sin(t * Math.PI * 15.7 + 1.1) +
+      0.14 * (jitter[k] - 0.5);
+    return env(t) * Math.max(0.08, Math.min(1, Math.abs(voice)));
+  };
+
+  let s = `<circle cx="600" cy="450" r="300" fill="url(#glowSoft)"/>`;
+
+  // envelope curves, mirrored
+  const up = [], down = [];
+  for (let k = 0; k <= 120; k++) {
+    const t = k / 120;
+    const x = x0 + (x1 - x0) * t;
+    up.push([x, cy - AMP * env(t)]);
+    down.push([x, cy + AMP * env(t)]);
+  }
+  s += poly(up, 0.26, 1.5) + poly(down, 0.26, 1.5);
+
+  // reference rules at half amplitude
+  [cy - AMP * 0.5, cy + AMP * 0.5].forEach((y) => {
+    s += `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="${az(0.07)}" stroke-width="1" stroke-dasharray="2 10"/>`;
+  });
+
+  // mirrored bars
+  let peak = { h: 0, x: 0 };
+  for (let k = 0; k < N; k++) {
+    const t = k / (N - 1);
+    const x = x0 + (x1 - x0) * t;
+    const h = AMP * amp(t, k);
+    if (h > peak.h) peak = { h, x };
+    s += `<line x1="${x.toFixed(1)}" y1="${(cy - h).toFixed(1)}" x2="${x.toFixed(1)}" y2="${(cy + h).toFixed(1)}" stroke="${az(0.26 + 0.5 * (h / AMP))}" stroke-width="2" stroke-linecap="round"/>`;
+  }
+
+  // axis and peak markers
+  s += `<line x1="${x0}" y1="${cy}" x2="${x1}" y2="${cy}" stroke="${az(0.55)}" stroke-width="1"/>`;
+  s += dot(peak.x, cy - peak.h - 12, 3, 0.9) + dot(peak.x, cy + peak.h + 12, 3, 0.9);
+  s += dot(x0, cy, 3.5, 0.7) + dot(x1, cy, 3.5, 0.7);
+  return svg(s);
+}
+
+/* ----------------------------------------------------------- gesture
+   21 point MediaPipe hand topology, open palm. */
+function gesture() {
+  // normalized landmarks, x right, y down
+  const L = [
+    [0.5, 0.94],                                              // 0 wrist
+    [0.3, 0.86], [0.2, 0.78], [0.13, 0.71], [0.07, 0.64],     // thumb
+    [0.33, 0.62], [0.29, 0.45], [0.27, 0.34], [0.25, 0.23],   // index
+    [0.5, 0.6], [0.49, 0.4], [0.49, 0.28], [0.48, 0.16],      // middle
+    [0.66, 0.62], [0.7, 0.43], [0.72, 0.32], [0.74, 0.21],    // ring
+    [0.78, 0.67], [0.85, 0.53], [0.89, 0.45], [0.93, 0.37],   // pinky
+  ];
+  const C = [
+    [0, 1], [1, 2], [2, 3], [3, 4],
+    [0, 5], [5, 6], [6, 7], [7, 8],
+    [5, 9], [9, 10], [10, 11], [11, 12],
+    [9, 13], [13, 14], [14, 15], [15, 16],
+    [13, 17], [17, 18], [18, 19], [19, 20],
+    [0, 17],
+  ];
+  const TIPS = [4, 8, 12, 16, 20];
+  const P = L.map(([x, y]) => [600 + (x - 0.5) * 760, 450 + (y - 0.565) * 620]);
+
+  let s = `<circle cx="600" cy="470" r="300" fill="url(#glow)"/>`;
+  C.forEach(([a, b]) => {
+    s += `<line x1="${P[a][0].toFixed(1)}" y1="${P[a][1].toFixed(1)}" x2="${P[b][0].toFixed(1)}" y2="${P[b][1].toFixed(1)}" stroke="${az(0.5)}" stroke-width="2" stroke-linecap="round"/>`;
+  });
+  P.forEach((p, i) => {
+    const tip = TIPS.includes(i);
+    const r = i === 0 ? 9 : tip ? 7 : 5.5;
+    if (tip) s += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="17" fill="${az(0.09)}"/>`;
+    s += `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${r}" fill="${tip || i === 0 ? az(0.92) : "#09090b"}" stroke="${az(tip || i === 0 ? 0.92 : 0.7)}" stroke-width="2"/>`;
+  });
+  // tracking reticle on the middle fingertip
+  const t = P[12];
+  s += `<circle cx="${t[0].toFixed(1)}" cy="${t[1].toFixed(1)}" r="38" fill="none" stroke="${az(0.28)}" stroke-width="1.2"/>`;
+  [[-56, 0, -44, 0], [56, 0, 44, 0], [0, -56, 0, -44], [0, 56, 0, 44]].forEach(([ax, ay, bx, by]) => {
+    s += `<line x1="${(t[0] + ax).toFixed(1)}" y1="${(t[1] + ay).toFixed(1)}" x2="${(t[0] + bx).toFixed(1)}" y2="${(t[1] + by).toFixed(1)}" stroke="${az(0.4)}" stroke-width="1.2"/>`;
+  });
+  return svg(s);
+}
+
+/* ----------------------------------------------------------- chatapp
+   two columns of rounded message plates around a geometric lock. */
+function chatapp() {
+  const GLYPHS = "/\\|:~^+=.*#-";
+  const rand = rng(19);
+  const noise = (n) => Array.from({ length: n }, () => GLYPHS[Math.floor(rand() * GLYPHS.length)]).join("");
+
+  const bubble = (x, y, w, h, rows, side) => {
+    const stroke = side === "l" ? az(0.22) : ink(0.1);
+    const fill = side === "l" ? SURFACE : "#0e0e11";
+    const glyph = side === "l" ? az(0.42) : ink(0.24);
+    let g = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="20" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>`;
+    const per = Math.floor((w - 44) / 13);
+    for (let r = 0; r < rows; r++) {
+      const count = r === rows - 1 ? Math.max(3, Math.round(per * 0.55)) : per;
+      g += `<text x="${x + 22}" y="${y + 34 + r * 24}" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" letter-spacing="4" fill="${glyph}">${noise(count)}</text>`;
+    }
+    return g;
+  };
+
+  let s = "";
+  // left column, aligned left at x=140
+  [[180, 300, 3], [300, 250, 2], [396, 330, 3], [516, 210, 2], [612, 286, 3]].forEach(([y, w, rows]) => {
+    s += bubble(140, y, w, rows === 3 ? 96 : 72, rows, "l");
+  });
+  // right column, aligned right at x=1060
+  [[240, 320, 3], [360, 240, 2], [456, 290, 3], [576, 260, 2]].forEach(([y, w, rows]) => {
+    s += bubble(1060 - w, y, w, rows === 3 ? 96 : 72, rows, "r");
+  });
+
+  // encrypted channel
+  s += `<circle cx="600" cy="450" r="190" fill="url(#glow)"/>`;
+  [[480, 544], [656, 720]].forEach(([a, b]) => {
+    s += `<line x1="${a}" y1="450" x2="${b}" y2="450" stroke="${az(0.3)}" stroke-width="1.5" stroke-dasharray="2 9"/>`;
+  });
+
+  // lock: rounded body, arc shackle, keyhole
+  s += `<g transform="translate(0,3)" fill="none" stroke="${az(0.92)}" stroke-width="2.5" stroke-linecap="round">
+    <path d="M572 430 V 408 A 28 28 0 0 1 628 408 V 430"/>
+    <rect x="552" y="430" width="96" height="84" rx="20" fill="${SURFACE}"/>
+    <circle cx="600" cy="462" r="7"/>
+    <path d="M600 469 V 488"/>
+  </g>`;
+  return svg(s);
+}
+
+/* ------------------------------------------------------- greenbasket
+   4x3 grid of geometric produce marks, one filled. */
+function greenbasket() {
+  const XS = [270, 490, 710, 930];
+  const YS = [250, 450, 650];
+  const HI = 6; // row 1, column 2
+
+  const shapes = [
+    // apple
+    { body: `<circle cx="0" cy="6" r="46"/>`, detail: `<path d="M0 -40 V -62"/><path d="M2 -58 Q 26 -76 34 -54 Q 14 -46 2 -58"/>` },
+    // leaf
+    { body: `<path d="M0 -54 Q 44 -14 0 54 Q -44 -14 0 -54 Z"/>`, detail: `<path d="M0 -54 V 54"/>` },
+    // root triangle
+    { body: `<path d="M-30 -30 L30 -30 L0 58 Z"/>`, detail: `<path d="M-14 -30 Q -34 -50 -30 -70"/><path d="M0 -30 Q 2 -52 -4 -72"/><path d="M14 -30 Q 32 -50 30 -68"/>` },
+    // pear
+    { body: `<path d="M0 -50 C 16 -50 20 -30 14 -14 C 34 -2 40 28 22 44 C 8 56 -8 56 -22 44 C -40 28 -34 -2 -14 -14 C -20 -30 -16 -50 0 -50 Z"/>`, detail: `<path d="M0 -50 L 6 -70"/>` },
+    // cluster
+    { body: `<circle cx="-36" cy="-24" r="17"/><circle cx="0" cy="-24" r="17"/><circle cx="36" cy="-24" r="17"/><circle cx="-18" cy="8" r="17"/><circle cx="18" cy="8" r="17"/><circle cx="0" cy="40" r="17"/>`, detail: `<path d="M0 -44 V -66"/>` },
+    // long fruit
+    { body: `<ellipse cx="0" cy="0" rx="20" ry="52" transform="rotate(-24)"/>`, detail: `<g transform="rotate(-24)"><path d="M-9 -30 V 30"/><path d="M9 -30 V 30"/></g>` },
+    // dome on stem
+    { body: `<path d="M-46 16 A 46 46 0 0 1 46 16 Z"/>`, detail: `<path d="M-11 16 V 52"/><path d="M11 16 V 52"/><path d="M-11 52 H 11"/>` },
+    // bulb
+    { body: `<path d="M0 -48 Q 42 -20 40 8 Q 36 48 0 52 Q -36 48 -40 8 Q -42 -20 0 -48 Z"/>`, detail: `<path d="M0 -48 V -72"/><path d="M0 -60 L 18 -72"/>` },
+    // kernel with ribs
+    { body: `<path d="M0 -56 Q 26 -20 22 20 Q 16 52 0 56 Q -16 52 -22 20 Q -26 -20 0 -56 Z"/>`, detail: `<path d="M-9 -30 V 34"/><path d="M9 -30 V 34"/>` },
+    // taproot
+    { body: `<circle cx="0" cy="-10" r="38"/>`, detail: `<path d="M0 28 V 64"/><path d="M-6 -46 L-22 -70"/><path d="M6 -46 L22 -70"/>` },
+    // rounded square
+    { body: `<rect x="-42" y="-32" width="84" height="84" rx="28"/>`, detail: `<path d="M0 -32 V -58"/><path d="M0 -46 L 20 -56"/>` },
+    // citrus wedge
+    { body: `<path d="M-46 -18 A 46 46 0 0 0 46 -18 Z"/>`, detail: `<path d="M0 -18 V 26"/><path d="M0 -18 L -30 12"/><path d="M0 -18 L 30 12"/>` },
+  ];
+
+  let s = "";
+  // grid rules
+  [380, 600, 820].forEach((x) => (s += `<line x1="${x}" y1="170" x2="${x}" y2="730" stroke="${az(0.06)}" stroke-width="1"/>`));
+  [350, 550].forEach((y) => (s += `<line x1="160" y1="${y}" x2="1040" y2="${y}" stroke="${az(0.06)}" stroke-width="1"/>`));
+
+  shapes.forEach((sh, i) => {
+    const cx = XS[i % 4];
+    const cy = YS[Math.floor(i / 4)];
+    const on = i === HI;
+    if (on) {
+      s += `<circle cx="${cx}" cy="${cy}" r="180" fill="url(#glow)"/>`;
+      s += `<rect x="${cx - 90}" y="${cy - 84}" width="180" height="168" rx="20" fill="${SURFACE}"/>`;
+    }
+    s += `<g transform="translate(${cx},${cy})" fill="${on ? az(0.9) : "none"}" stroke="${az(on ? 0.95 : 0.42)}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${sh.body}</g>`;
+    s += `<g transform="translate(${cx},${cy})" fill="none" stroke="${az(on ? 0.95 : 0.42)}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${sh.detail}</g>`;
+  });
+  return svg(s);
+}
+
+const POSTERS = { emotion, dentalbot, gesture, chatapp, greenbasket };
+for (const [id, fn] of Object.entries(POSTERS)) document.getElementById(id).innerHTML = fn();
+
+// ?slug=x or #x isolates one poster in a 1200x900 viewport for capture
+const slug = new URLSearchParams(location.search).get("slug") || location.hash.slice(1);
+if (slug && POSTERS[slug]) {
+  document.body.classList.add("single");
+  document.getElementById(slug).classList.add("on");
+}
+</script>

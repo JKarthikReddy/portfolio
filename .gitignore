@@ -1,0 +1,7 @@
+portfolio-app/node_modules/
+portfolio-app/.next/
+portfolio-app/out/
+
+# superpowers SDD scratch
+.superpowers/
+.DS_Store

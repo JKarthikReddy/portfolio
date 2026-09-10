@@ -1,0 +1,13 @@
+Model Information:
+* title:	Manopla Infinito 3D Model
+* source:	https://sketchfab.com/3d-models/manopla-infinito-3d-model-6b5999434cfa497a98b17cae569f56ad
+* author:	gothic404 (https://sketchfab.com/gothic404)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Manopla Infinito 3D Model" (https://sketchfab.com/3d-models/manopla-infinito-3d-model-6b5999434cfa497a98b17cae569f56ad) by gothic404 (https://sketchfab.com/gothic404) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+
+Modifications: re-encoded for the web with gltf-transform (Draco geometry, WebP texture). The six Infinity Stones rendered on the site are procedural meshes placed over the model's painted sockets.
