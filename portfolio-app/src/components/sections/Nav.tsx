@@ -12,6 +12,20 @@ const NAV_ITEMS = [
   { label: "Contact", href: "#contact" },
 ];
 
+// External links ride in the same pill cluster on desktop and as the socials
+// row of the mobile menu.
+const LINK_ITEMS = [
+  { label: "GitHub", href: profile.github },
+  { label: "LinkedIn", href: profile.linkedin },
+  { label: "Resume", href: profile.resumePath },
+];
+
+// PillNav renders root-relative hrefs through next/link, which prepends the
+// basePath itself, so the resume pill must not carry it twice.
+const PILL_ITEMS = [...NAV_ITEMS, ...LINK_ITEMS].map((item) =>
+  item.href === profile.resumePath ? { ...item, href: profile.resumePath.slice(BASE.length) } : item,
+);
+
 const STAGGERED_ITEMS = NAV_ITEMS.map((item) => ({
   label: item.label,
   ariaLabel: `Go to ${item.label}`,
@@ -31,7 +45,7 @@ export function Nav() {
           <PillNav
             logo={`${BASE}/logo-nav.svg`}
             logoAlt={profile.name}
-            items={NAV_ITEMS}
+            items={PILL_ITEMS}
             baseColor="#38bdf8"
             navBgColor="rgba(19, 19, 22, 0.6)"
             pillColor="transparent"
@@ -44,7 +58,8 @@ export function Nav() {
             isFixed
             position="right"
             items={STAGGERED_ITEMS}
-            displaySocials={false}
+            displaySocials
+            socialItems={LINK_ITEMS.map((l) => ({ label: l.label, link: l.href }))}
             displayItemNumbering={false}
             logoUrl={`${BASE}/logo-nav.svg`}
             colors={["#131316", "#38bdf8"]}
