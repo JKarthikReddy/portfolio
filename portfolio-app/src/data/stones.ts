@@ -20,12 +20,12 @@ export interface Stone {
 
 /** Canonical order from the reference recording. */
 export const stones: Stone[] = [
-  { id: "mind", name: "Mind", hex: "#FFD700", socket: [-0.022, 0.271, -1.112], normal: [-0.007, 0.999, -0.047], radius: 0.09, slug: "intelligent-lecture-companion" },
-  { id: "soul", name: "Soul", hex: "#FF7A1A", socket: [-0.235, 0.185, -1.305], normal: [-0.603, 0.784, -0.151], radius: 0.052, slug: "ai-travel-agent" },
-  { id: "reality", name: "Reality", hex: "#FF2D2D", socket: [-0.101, 0.234, -1.338], normal: [-0.168, 0.951, -0.258], radius: 0.052, slug: "kneevision-x" },
-  { id: "space", name: "Space", hex: "#2D7CFF", socket: [0.062, 0.231, -1.312], normal: [0.301, 0.952, -0.05], radius: 0.052, slug: "airbnb-booking-analysis" },
-  { id: "power", name: "Power", hex: "#A234FF", socket: [0.191, 0.194, -1.314], normal: [0.5, 0.859, -0.11], radius: 0.052, slug: "agriintel-ai" },
-  { id: "time", name: "Time", hex: "#22E07A", socket: [0.286, -0.112, -0.917], normal: [0.501, -0.351, 0.791], radius: 0.052, slug: "netflix-content-analysis" },
+  { id: "mind", name: "Mind", hex: "#FFD700", socket: [-0.022, 0.271, -1.112], normal: [-0.007, 0.999, -0.047], radius: 0.09, slug: "kneevision-x" },
+  { id: "soul", name: "Soul", hex: "#FF7A1A", socket: [-0.235, 0.185, -1.305], normal: [-0.603, 0.784, -0.151], radius: 0.052, slug: "agriintel-ai" },
+  { id: "reality", name: "Reality", hex: "#FF2D2D", socket: [-0.101, 0.234, -1.338], normal: [-0.168, 0.951, -0.258], radius: 0.052, slug: "netflix-content-analysis" },
+  { id: "space", name: "Space", hex: "#2D7CFF", socket: [0.062, 0.231, -1.312], normal: [0.301, 0.952, -0.05], radius: 0.052, slug: "intelligent-lecture-companion" },
+  { id: "power", name: "Power", hex: "#A234FF", socket: [0.191, 0.194, -1.314], normal: [0.5, 0.859, -0.11], radius: 0.052, slug: "airbnb-booking-analysis" },
+  { id: "time", name: "Time", hex: "#22E07A", socket: [0.286, -0.112, -0.917], normal: [0.501, -0.351, 0.791], radius: 0.052, slug: "ai-travel-agent" },
 ];
 
 /** One intro stop plus one stop per stone. */
