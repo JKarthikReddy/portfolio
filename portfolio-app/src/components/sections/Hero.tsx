@@ -23,7 +23,7 @@ export function Hero() {
           as="p"
           text={[
             "Generative AI and RAG in production.",
-            "Knee MRI AI at 0.832 macro AUROC.",
+            "AgriIntel AI for smarter farming.",
             "Benchmarks for frontier agents.",
           ]}
           typingSpeed={45}
